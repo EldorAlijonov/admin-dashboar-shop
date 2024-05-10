@@ -1,0 +1,39 @@
+.deleteModal {
+    .top {
+        margin-bottom: 20px;
+
+        .title {
+            color: #264E86;
+            font-size: 20px;
+            text-align: center;
+        }
+    }
+
+    .bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+
+        .ant-btn {
+            width: 150px;
+
+
+            &.cancel {
+                background: #0074E4;
+                color: #fff;
+                font-weight: 600;
+            }
+
+            &.delete {
+                background: #f30e0e;
+                color: #fff;
+                font-weight: 600;
+
+                &:hover {
+                    border-color: #f30e0e;
+                }
+            }
+        }
+    }
+}

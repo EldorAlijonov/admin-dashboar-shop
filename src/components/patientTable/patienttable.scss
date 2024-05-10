@@ -1,0 +1,75 @@
+.patientTable {
+    -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+    box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+    background-color: #fff;
+    border-radius: 10px;
+
+    .top {
+        width: 100%;
+        display: flex;
+        padding: 20px 20px 0px 20px;
+
+        .search {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            border: 0.5px solid #d3d3d3;
+            padding: 6px;
+            border-radius: 3px;
+
+            input {
+                width: 100%;
+                border: none;
+                outline: none;
+                background: transparent;
+
+                &::placeholder {
+                    font-size: 14px;
+                }
+            }
+
+            .icon {
+                font-size: 20px;
+            }
+        }
+    }
+
+    .ant-table-thead>tr>th {
+        background-color: transparent;
+        padding: 0 20px;
+
+        &::before {
+            display: none !important;
+        }
+
+        &:nth-child(1) {
+            text-align: center;
+        }
+    }
+
+    .ant-table-row td {
+        &:nth-child(1) {
+            text-align: center;
+        }
+    }
+
+    .ant-pagination {
+        padding-right: 20px;
+    }
+
+    .edit {
+        box-shadow: none;
+        border: none;
+        color: #0074E4 !important;
+        background: transparent !important;
+    }
+
+    .delete {
+        box-shadow: none !important;
+        background: transparent !important;
+        border: none;
+        color: #dd5f5f !important;
+
+    }
+
+}

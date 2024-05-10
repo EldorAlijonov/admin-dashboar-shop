@@ -1,0 +1,35 @@
+.patient {
+    display: flex;
+    width: 100%;
+
+    .patientContainer {
+        padding: 20px;
+        width: 100%;
+
+        .top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+
+            .title {
+                font-size: 24px;
+                font-weight: bold;
+                color: rgb(38, 78, 134);
+            }
+
+            .ant-btn {
+                font-size: 15px;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                border: 1px solid #264E86;
+                color: #264E86;
+
+                &:hover {
+                    background-color: #fff;
+                }
+            }
+        }
+    }
+}
