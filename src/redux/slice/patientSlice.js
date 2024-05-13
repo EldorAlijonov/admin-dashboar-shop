@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
     patientAdd: {},
     patientUpdata: {},
+    patientCounter: 0
 }
 
 export const patientSlice = createSlice({
@@ -14,10 +15,13 @@ export const patientSlice = createSlice({
         },
         patientPut: (state, action) => {
             state.patientUpdata = action.payload;
+        },
+        patientCount: (state, action) => {
+            state.patientCounter = action.payload;
         }
     },
 })
 
-export const { patientPost, patientPut } = patientSlice.actions;
+export const { patientPost, patientPut, patientCount } = patientSlice.actions;
 
 export default patientSlice.reducer;

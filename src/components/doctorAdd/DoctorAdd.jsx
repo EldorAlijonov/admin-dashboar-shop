@@ -1,26 +1,22 @@
+import "./doctorAdd.scss";
 import { useEffect, useState } from "react";
 import { Button, Flex, Modal, Select } from "antd";
 import { HiOutlineUserAdd } from "react-icons/hi";
 import { AiOutlineClear } from "react-icons/ai";
 import { TbUserCancel } from "react-icons/tb";
 import { FaUserEdit } from "react-icons/fa";
-import { PatientsApi } from "../../services/patient";
 import Message from "../../hooks/Message";
-import { useDispatch } from "react-redux";
-import "./patientadd.scss";
-import { patientPost, patientPut } from "../../redux/slice/patientSlice";
+import { useDispatch, useSeletor } from "react-redux";
+import { DoctorApi } from "../../services/doctor";
+import { doctorPost, doctorPut } from "../../redux/slice/doctorSlice";
 const initialState = {
     firstName: "",
     age: "",
-    gender: "",
-    address: "",
     phone: "",
 }
-
-const PatientAdd = (props) => {
-    const { open, onCansel, patientId } = props;
+const DoctorAdd = (props) => {
+    const { open, onCansel, doctorId = null } = props;
     const { success, error, messageApiContext } = Message();
-
     const dispatch = useDispatch();
 
     const [errors, setErrors] = useState(null);
@@ -33,24 +29,22 @@ const PatientAdd = (props) => {
         if (
             post.firstName === "" ||
             post.age === "" ||
-            post.address === "" ||
-            post.phone === "" ||
-            post.gender === ""
+            post.phone === ""
         ) {
             setErrors("Iltimos ma'lumotlarni to'liq kiriting");
             return;
         }
         try {
-            if (patientId !== null) {
-                const response = await PatientsApi.patientPut(patientId, post);
-                dispatch(patientPut(response));
-                success("Bemor ma'lumotlari tahrirlandi");
+            if (doctorId !== null) {
+                const response = await DoctorApi.doctorPut(doctorId, post);
+                dispatch(doctorPut(response));
+                success("Doctor add");
                 onCansel();
                 clearInput();
             } else {
-                const response = await PatientsApi.patientsPost(post);
-                dispatch(patientPost(response))
-                success("Bemor ma'lumotlari kiritildi");
+                const response = await DoctorApi.doctorPost(post);
+                dispatch(doctorPost(response))
+                success("Doctor Not add");
                 onCansel();
                 clearInput()
 
@@ -64,20 +58,19 @@ const PatientAdd = (props) => {
 
 
 
-    const getPatientById = async () => {
+    const getDoctorById = async () => {
         try {
 
-            const response = await PatientsApi.getPatientById(patientId);
+            const response = await DoctorApi.getDoctorById(doctorId);
             setPost(response);
         } catch (err) {
-            console.log(err);
         }
     }
     useEffect(() => {
-        if (patientId !== null) {
-            getPatientById();
+        if (doctorId !== null) {
+            getDoctorById();
         }
-    }, [patientId]);
+    }, [doctorId]);
 
 
     const clearInput = () => {
@@ -92,21 +85,20 @@ const PatientAdd = (props) => {
             onCansel();
         }, 10);
     }
-
     return (
         <>
             {messageApiContext}
             <Modal
                 open={open}
                 footer={false}
-                title={patientId ? "Edit Patient" : "Add A Patient"}
-                className="patientAdd"
+                title={doctorId ? "Edit Doctor" : "Add A Doctor"}
+                className="doctorAdd"
                 closeIcon={false}
             >
                 <form>
                     <div className="formInput">
                         <div className="inputItem">
-                            <label htmlFor="firstName">Name</label>
+                            <label htmlFor="firstName">Full Name</label>
                             <input
                                 type="text"
                                 name="firstName"
@@ -115,6 +107,8 @@ const PatientAdd = (props) => {
                                 onChange={(e) => onChange(e.target.name, e.target.value)}
                             />
                         </div>
+                    </div>
+                    <div className="formInput">
                         <div className="inputItem">
                             <label htmlFor="age">Age</label>
                             <input
@@ -125,22 +119,9 @@ const PatientAdd = (props) => {
                                 onChange={(e) => onChange(e.target.name, e.target.value)}
                             />
                         </div>
+
                     </div>
                     <div className="formInput">
-                        <div className="inputItem">
-                            <label htmlFor="gender">Gender</label>
-                            <Select
-                                onChange={(value) => onChange("gender", value)}
-                                value={post.gender}
-                                name="gender"
-                                defaultValue="Select"
-                                id="gender"
-                                options={[
-                                    { value: 'male', label: 'Male' },
-                                    { value: 'female', label: 'Female' },
-                                ]}
-                            />
-                        </div>
                         <div className="inputItem">
                             <label htmlFor="phone">Phone</label>
                             <input
@@ -148,18 +129,6 @@ const PatientAdd = (props) => {
                                 name="phone"
                                 id="phone"
                                 value={post.phone}
-                                onChange={(e) => onChange(e.target.name, e.target.value)}
-                            />
-                        </div>
-                    </div>
-                    <div className="formInput">
-                        <div className="inputItem">
-                            <label htmlFor="address">Address</label>
-                            <input
-                                type="text"
-                                name="address"
-                                id="address"
-                                value={post.address}
                                 onChange={(e) => onChange(e.target.name, e.target.value)}
                             />
                         </div>
@@ -183,7 +152,7 @@ const PatientAdd = (props) => {
                             >
                                 Cancel
                             </Button>
-                            {patientId ? (
+                            {doctorId ? (
                                 <Button
                                     type="text"
                                     className="add"
@@ -206,8 +175,9 @@ const PatientAdd = (props) => {
                     </div>
                 </form>
             </Modal>
+
         </>
     );
 }
 
-export default PatientAdd;
+export default DoctorAdd;

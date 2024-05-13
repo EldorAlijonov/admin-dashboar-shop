@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { PatientsApi } from "../../services/patient";
 import { FaUserEdit } from "react-icons/fa";
 import { FaRegTrashAlt } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Message from "../../hooks/Message";
 
@@ -43,6 +42,16 @@ const Patient = () => {
             dataIndex: 'address',
         },
         {
+            title: "Date",
+            dataIndex: "createdAt",
+            render: (text, record) => {
+                const date = new Date(record.createdAt);
+                const formattedDate = `${date.getMonth() + 1}.${date.getDate()}.${date.getFullYear()}, ${date.getHours()}:${date.getMinutes().toString().padStart(2, '0')}`;
+                return formattedDate;
+            }
+        },
+        {
+            title: 'Actions',
             render: (text, record) => (
                 <Flex gap={30} justify="center">
                     <Button
@@ -56,9 +65,9 @@ const Patient = () => {
                         icon={<FaRegTrashAlt size={20} />} />
                 </Flex>
             ),
-        },
-
+        }
     ];
+
     const [getData, setGetData] = useState([]);
     const [open, setOpen] = useState(false);
     const fetchData = async () => {

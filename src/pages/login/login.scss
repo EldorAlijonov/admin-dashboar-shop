@@ -1,0 +1,56 @@
+.login {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #264e86;
+
+
+    form {
+        width: 35vw;
+        border: 1px solid #264e86;
+        padding: 30px;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+        box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+        gap: 15px;
+
+        .title {
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .imputItem {
+            display: flex;
+            flex-direction: column;
+
+            label {
+                font-weight: 500;
+            }
+
+            input {
+                padding: 5px;
+                outline: none;
+                border: 1px solid #d3d3d3;
+                border-radius: 3px;
+                color: #264E86;
+            }
+
+        }
+
+        .ant-btn {
+            color: #fff;
+            font-weight: 600;
+            font-size: 15px;
+            background-color: #0074e4 !important;
+            width: 150px;
+
+            &:hover {
+                color: #fff !important;
+            }
+        }
+    }
+
+}
