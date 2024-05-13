@@ -1,8 +1,7 @@
 import { Button, Modal } from "antd";
 import "./delete.scss";
-import { useState } from "react";
-const Delete = () => {
-    const [open, setOpen] = useState(false);
+const Delete = (props) => {
+    const { open, clickCancel, clickDelete } = props;
 
     return (
         <Modal open={open} footer={null} closeIcon={null} width={300} className="deleteModal">
@@ -12,8 +11,8 @@ const Delete = () => {
                 </h1>
             </div>
             <div className="bottom">
-                <Button className="cancel">Cancel</Button>
-                <Button className="delete">Delete</Button>
+                <Button className="cancel" type="text" onClick={clickCancel}>Cancel</Button>
+                <Button className="delete" type="text" onClick={clickDelete}>Delete</Button>
             </div>
 
         </Modal>

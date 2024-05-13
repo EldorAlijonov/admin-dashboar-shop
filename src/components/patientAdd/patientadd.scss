@@ -39,14 +39,17 @@
                     &:hover {
                         border-color: #d3d3d3 !important;
                     }
+
+                    .ant-select-selection-item {
+                        color: #264E86;
+                    }
                 }
             }
         }
 
         .formButton {
             display: flex;
-            justify-content: center;
-            gap: 30px;
+            justify-content: space-between;
 
             .ant-btn {
                 width: 100px;
@@ -54,6 +57,15 @@
                 font-weight: 600;
                 display: flex;
                 align-items: center;
+
+                &.clear {
+                    border: none;
+
+                    &:hover {
+                        background-color: #fff;
+                        border: none;
+                    }
+                }
 
                 &.cancel {
                     color: #264E86;
@@ -65,16 +77,18 @@
                     border-color: #0074E4;
                 }
 
-                &.clear {
-                    &:hover {
-                        border-color: #d3d3d3;
-                        color: #111;
-                    }
-                }
+
 
             }
         }
 
+        .formErrors {
+            font-weight: 600;
+            display: flex;
+            margin-bottom: 10px;
+            justify-content: center;
+            color: #f30e0e;
+        }
 
     }
 
