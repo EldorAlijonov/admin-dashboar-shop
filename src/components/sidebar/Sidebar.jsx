@@ -1,11 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { item } from "./item";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./sidebar.scss";
 import { MdOutlineLogout } from "react-icons/md";
 
 const Sidebar = () => {
-    const [active, setActive] = useState("/");
+    const location = useLocation();
+    const [active, setActive] = useState(location.pathname);
+
+    useEffect(() => {
+        setActive(location.pathname);
+    }, [location.pathname]);
     const handleActive = (to) => setActive(to);
     return (
         <div className="sidebar">
@@ -19,7 +24,7 @@ const Sidebar = () => {
 
                     {item.map((item, index) => (
                         <Link to={item.to} className="link" key={index}>
-                            <li onClick={() => handleActive(item.to)} className={active===item.to ? "active" : ""}>
+                            <li onClick={() => handleActive(item.to)} className={active === item.to ? "active" : ""}>
                                 {item.icon}
                                 <span>{item.title}</span>
                             </li>

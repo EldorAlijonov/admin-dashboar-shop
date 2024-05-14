@@ -5,7 +5,7 @@ import { Doctor, Home, Login, Patient } from './pages';
 import Setting from './pages/setting/Setting';
 import { useState } from 'react';
 const App = () => {
-  const [token] = useState('')
+  const [token] = useState('dsadsa')
 
   return (
     <>{token ?
